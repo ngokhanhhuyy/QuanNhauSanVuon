@@ -1,0 +1,87 @@
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Table {
+    id Int @id @default(autoincrement())
+    name String @db.VarChar(50)
+    positionX Int @map("position_x")
+    positionY Int @map("position_y")
+
+    @@unique([positionX, positionY], map: "unique__tables__position_x__position_y")
+    @@map("tables")
+}
+
+model Order {
+    id Int @id @default(autoincrement())
+    createdDateTime DateTime @map("created_datetime")
+    paidDateTime DateTime? @map("paid_datetime")
+    itemAmount BigInt @default(0) @map("item_amount")
+    vatAmount BigInt @default(0) @map("vat_amount")
+    items OrderItem[]
+
+    @@map("orders")
+}
+
+model OrderItem {
+    id Int @id @default(autoincrement())
+    orderedDateTime DateTime @map("ordered_datetime")
+    quantity Int @default(1)
+    orderId Int @map("order_id")
+    order Order @relation(fields: [orderId], references: [id], map: "fk__order_items__orders")
+}
+
+model MenuItem {
+    id Int @id @default(autoincrement())
+    name String @db.VarChar(150)
+    defaultAmount BigInt @default(0) @map("default_amount")
+    vatAmount BigInt @default(0) @map("vat_amount")
+    categoryId Int @map("category_id")
+    category MenuCategory? @relation(fields: [categoryId], references: [id], map: "fk__menu_items__menu_categories")
+
+    @@map("menu_items")
+}
+
+model MenuCategory {
+    id Int @id @default(autoincrement())
+    name String @db.VarChar(50) @unique(map: "unique__menu_catagories__name")
+    items MenuItem[]
+
+    @@map("menu_categories")
+}
+
+model MonthlySummary {
+    id Int @id @default(autoincrement())
+    year Int
+    month Int
+    revenue BigInt
+    collectedVatAmount BigInt @map("collected_vat_amount")
+
+    @@map("monthly_summaries")
+}
+
+model User {
+  id           Int             @id @default(autoincrement())
+  userName     String          @map("username") @db.VarChar(50)
+  passwordHash String          @map("password_hash") @db.VarChar(255)
+  permission   UserPermission?
+
+  @@unique([userName], map: "unique_user_userName")
+  @@map("users")
+}
+
+model UserPermission {
+  id                   Int     @id @default(autoincrement())
+  canCreateUser        Boolean @default(false) @map("can_create_user")
+  canResetUserPassword Boolean @default(false) @map("can_reset_user_password")
+  canDeleteUser        Boolean @default(false) @map("can_delete_user")
+  userId               Int     @unique
+  user                 User    @relation(fields: [userId], references: [id], map: "fk__user_permissions__users")
+
+  @@map("user_permissions")
+}
