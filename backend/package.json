@@ -14,11 +14,13 @@
   "type": "module",
   "dependencies": {
     "@prisma/client": "^6.8.2",
+    "dot-object": "^2.1.5",
     "dotenv": "^16.5.0",
     "express": "^5.1.0",
-    "zod": "^3.25.32"
+    "zod": "^3.25.42"
   },
   "devDependencies": {
+    "@types/dot-object": "^2.1.6",
     "@types/dotenv": "^6.1.1",
     "@types/express": "^5.0.2",
     "@types/node": "^22.15.23",

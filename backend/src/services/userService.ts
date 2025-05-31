@@ -1,5 +1,5 @@
 import type { PrismaClient } from "@prisma/client";
-import { createUserDetailResponseDto } from "../dtos/userDtos/userResponseDtos";
+import { createUserDetailResponseDto } from "../dtos/user/userResponseDtos";
 import { NotFoundError } from "../errors";
 
 /**
@@ -29,7 +29,7 @@ export function createUserService(prisma: PrismaClient) {
     
       if (!user) {
         throw new NotFoundError();
-      };
+      }
     
       return createUserDetailResponseDto(user);
     }

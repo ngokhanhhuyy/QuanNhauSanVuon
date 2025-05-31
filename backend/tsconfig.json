@@ -18,13 +18,17 @@
     "strict": true,                                      /* Enable all strict type-checking options. */
 
     /* Completeness */
-    "skipLibCheck": true                                 /* Skip type checking all .d.ts files. */
+    "skipLibCheck": true,                                /* Skip type checking all .d.ts files. */
+
+
+    "baseUrl": "./src",
+    "paths": {
+      "@/*": ["./*"],
+      "@shared/*": ["../../shared/*"]
+    },
   },
   "ts-node": {
     "esm": true,
     "experimentalSpecifierResolution": "node",
-  },
-  "paths": {
-    "@/*": ["./src/*"],
   },
 }
