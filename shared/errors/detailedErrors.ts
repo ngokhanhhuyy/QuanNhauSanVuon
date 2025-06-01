@@ -18,11 +18,19 @@ export class ValidationError extends Error {
 }
 
 export class OperationError extends Error {
-  public readonly failures: OperationFailure[];
+  public readonly failure: OperationFailure;
 
-  constructor(failures: OperationFailure[]) {
+  constructor(failure: OperationFailure) {
     super();
-    this.failures = failures;
+    this.failure = failure;
+  }
+
+  static notFound(fieldPath: string | number | (string | number)[]): OperationError {
+    return new OperationError({
+      code: "NotFound",
+      fieldPath: Array.isArray(fieldPath) ? fieldPath : [fieldPath],
+      ruleValue: undefined
+    })
   }
 }
 

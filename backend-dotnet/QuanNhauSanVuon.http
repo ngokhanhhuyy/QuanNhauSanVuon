@@ -1,0 +1,6 @@
+@QuanNhauSanVuon_HostAddress = http://localhost:5122
+
+GET {{QuanNhauSanVuon_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

@@ -1,14 +1,12 @@
-import type { Table } from "@prisma/client";
+import type { OrderBasicResponseDto } from "../order/orderResponseDtos";
 
-declare global {
-  type TableBasicResponseDto = {
-    id: number;
-    name: string;
-    positionX: number;
-    positionY: number;
-  };
+export type TableBasicResponseDto = {
+  id: number;
+  name: string;
+  positionX: number;
+  positionY: number;
+};
 
-  type TableDetailResponseDto = {
-    order:
-  }
-}
+export type TableDetailResponseDto = {
+  order: OrderBasicResponseDto;
+} & TableBasicResponseDto;
