@@ -6,9 +6,9 @@ export default defineConfig({
 
   performance: {
     buildCache: false,
-    // chunkSplit: {
-    // 	strategy: "all-in-one"
-    // }
+    chunkSplit: {
+    	strategy: "all-in-one"
+    }
   },
   resolve: {
     aliasStrategy: "prefer-alias",
@@ -36,17 +36,11 @@ export default defineConfig({
         secure: false,
         ws: true,
       },
-      "/images": {
-        target: "http://localhost:5000",
-        pathRewrite: { "^/images": "/images" },
-        changeOrigin: true,
-        secure: false,
-      },
     },
   },
   dev: {
     client: {
-      host: "frontend-workstation.khanhhuy.dev",
+      host: "frontend-wsl.khanhhuy.dev",
     },
   },
 });

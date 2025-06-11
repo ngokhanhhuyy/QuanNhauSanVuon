@@ -1,6 +1,121 @@
-@QuanNhauSanVuon_HostAddress = http://localhost:5122
-
-GET {{QuanNhauSanVuon_HostAddress}}/weatherforecast/
+@host = http://localhost:5000/api
+###
+# @name GetAccessCookie
+POST {{host}}/authentication/getAccessCookie HTTP/2.0
+Content-Type: application/json
 Accept: application/json
 
+{
+    "userName": "ngokhanhhuyy",
+    "password": "Huyy47b1"
+}
+
 ###
+@accessCookie = {{GetAccessCookie.response.headers.Set-Cookie}}
+
+###
+# @name SeatingAreaList
+GET {{host}}/seatingArea HTTP/2.0
+Content-Type: application/json
+Accept: application/json
+Cookie: {{accessCookie}}
+
+###
+# @name SeatingAreaSingle
+GET {{host}}/seatingArea/1 HTTP/2.0
+Content-Type: application/json
+Accept: application/json
+Cookie: {{accessCookie}}
+
+###
+# @name SeatingAreaCreate
+POST {{host}}/seatingArea HTTP/2.0
+Content-Type: application/json
+Accept: application/json
+Cookie: {{accessCookie}}
+
+{
+    "name": "Mang về 2",
+    "color": "silver",
+    "takenUpPositions": [
+        {
+            "x": 3,
+            "y": 3
+        },
+        {
+            "x": 4,
+            "y": 3
+        },
+        {
+            "x": 3,
+            "y": 4
+        },
+        {
+            "x": 4,
+            "y": 4
+        }
+    ],
+    "seatings": [
+        {
+            "id": null,
+            "name": "Mang về 1",
+            "positionX": 4,
+            "positionY": 4,
+            "areaId": null,
+            "hasBeenChanged": true,
+            "hasBeenDeleted": false
+        }
+    ]
+}
+
+###
+# @name SeatingAreaUpdate
+PUT {{host}}/seatingArea/1 HTTP/2.0
+Content-Type: application/json
+Accept: application/json
+Cookie: {{accessCookie}}
+
+{
+    "name": "Mang về",
+    "color": "silver",
+    "takenUpPositions": [
+        {
+            "x": 0,
+            "y": 0
+        },
+        {
+            "x": 1,
+            "y": 0
+        },
+        {
+            "x": 0,
+            "y": 1
+        },
+        {
+            "x": 1,
+            "y": 1
+        }
+    ],
+    "seatings": [
+        {
+            "id": 2,
+            "name": "Mang về 1",
+            "positionX": 0,
+            "positionY": 0
+        }
+    ]
+}
+
+###
+# @name MenuItemList
+GET {{host}}/menuItem?categoryId=3 HTTP/2.0
+Content-Type: application/json
+Accept: application/json
+Cookie: {{accessCookie}}
+
+###
+# @name MenuCategoryAll
+GET {{host}}/menuCategory HTTP/2.0
+Content-Type: application/json
+Accept: application/json
+Cookie: {{accessCookie}}

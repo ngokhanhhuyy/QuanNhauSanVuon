@@ -1,6 +1,6 @@
 .btn {
-    @apply rounded-sm px-3 py-2 w-fit font-bold cursor-pointer active:brightness-125;
-    transition: 
+    @apply rounded-sm px-3 py-2 w-fit cursor-pointer active:brightness-125 shadow-sm;
+    transition: .25s ease;
 }
 
 .btn.disabled .btn:disabled {
@@ -15,14 +15,53 @@
     @apply text-white bg-red-500 hover:bg-red-400;
 }
 
+.btn-purple {
+    @apply text-white bg-purple-500 hover:bg-purple-400;
+}
+
 .btn-yellow {
     @apply text-black bg-yellow-300 hover:bg-yellow-200;
 }
 
 .btn-green {
-    @apply text-white bg-green-500 hover:bg-green-400;
+    @apply text-white bg-green-600 hover:bg-green-500;
+}
+
+.btn-black {
+    @apply text-white bg-neutral-950 hover:bg-neutral-700;
 }
 
 .btn-blue-outline {
     @apply text-blue-500 border-1 border-blue-500 hover:text-white hover:bg-blue-500;
+}
+
+.btn-red-outline {
+    @apply text-red-500 border-1 border-red-500 hover:text-white hover:bg-red-500;
+}
+
+.btn-purple-outline {
+    @apply text-purple-500 border-1 border-purple-500 hover:text-white hover:bg-purple-500;
+}
+
+.btn-yellow-outline {
+    @apply text-yellow-500 border-1 border-yellow-500 hover:text-black hover:bg-yellow-300
+        hover:border-yellow-300;
+}
+
+.btn-green-outline {
+    @apply text-green-600 border-1 border-green-600 hover:text-white hover:bg-green-600;
+}
+
+.btn-black-outline {
+    @apply text-neutral-950 border-1 border-neutral-950 hover:text-white hover:bg-neutral-950;
+}
+
+.btn-sm {
+    font-size: .9em;
+    @apply px-2 py-1;
+}
+
+.btn-lg {
+    font-size: 1.1em;
+    @apply px-4 py-3;
 }

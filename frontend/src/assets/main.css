@@ -8,6 +8,22 @@ body {
   background-image: white;
 }
 
+#root {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: stretch;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: stretch;
+}
+
 .content {
   display: flex;
   min-height: 100vh;

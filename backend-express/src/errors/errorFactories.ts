@@ -4,7 +4,7 @@ import type { z } from "zod";
 export function useErrorFactory() {
   return {
     createValidationError(issues: z.ZodIssue[]): ValidationError {
-      const failures: ValidationFailure[] = [];
+      const failures: ValidationFailure[]
       for (const issue of issues) {
         let ruleValue: any = 0;
         switch (issue.code) {

@@ -2,7 +2,7 @@ import { ValidationError } from "@shared/errors";
 export function useErrorFactory() {
     return {
         createValidationError(issues) {
-            const failures = [];
+            const failures
             for (const issue of issues) {
                 let ruleValue = 0;
                 switch (issue.code) {
